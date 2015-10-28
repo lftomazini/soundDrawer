@@ -14,13 +14,13 @@
  *
  * ****************************************
  */
-package hw02;
+package hw03;
 
-import static hw02.WAVAudioFile.CHANNELS;
-import static hw02.WAVAudioFile.IS_BIG_ENDIAN;
-import static hw02.WAVAudioFile.NUMBER_OF_BITS;
-import static hw02.WAVAudioFile.SAMPLE_RATE;
-import static hw02.WAVAudioFile.SIGNED;
+import static hw03.WAVAudioFile.CHANNELS;
+import static hw03.WAVAudioFile.IS_BIG_ENDIAN;
+import static hw03.WAVAudioFile.NUMBER_OF_BITS;
+import static hw03.WAVAudioFile.SAMPLE_RATE;
+import static hw03.WAVAudioFile.SIGNED;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
