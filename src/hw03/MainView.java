@@ -38,34 +38,34 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenu = new javax.swing.JMenu();
+        jMenuNew = new javax.swing.JMenuItem();
+        jMenuOpen = new javax.swing.JMenuItem();
+        jMenuExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Audio eXtreme");
 
-        jMenu1.setText("File");
+        jMenu.setText("File");
 
-        jMenuItem1.setText("New");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuNew.setText("New");
+        jMenuNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuNewActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu.add(jMenuNew);
 
-        jMenuItem2.setText("Open");
-        jMenu1.add(jMenuItem2);
+        jMenuOpen.setText("Open");
+        jMenu.add(jMenuOpen);
 
-        jMenuItem3.setText("Exit");
-        jMenu1.add(jMenuItem3);
+        jMenuExit.setText("Exit");
+        jMenu.add(jMenuExit);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar.add(jMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,9 +81,9 @@ public class MainView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuNewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,7 +92,7 @@ public class MainView extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -102,13 +102,17 @@ public class MainView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -121,10 +125,10 @@ public class MainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenu jMenu;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenuItem jMenuExit;
+    private javax.swing.JMenuItem jMenuNew;
+    private javax.swing.JMenuItem jMenuOpen;
     // End of variables declaration//GEN-END:variables
 }
