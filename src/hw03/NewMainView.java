@@ -20,12 +20,12 @@ package hw03;
  *
  * @author as062
  */
-public class MainView extends javax.swing.JFrame {
+public class NewMainView extends javax.swing.JFrame {
 
     /**
      * Creates new form MainView
      */
-    public MainView() {
+    public NewMainView() {
         initComponents();
     }
 
@@ -102,24 +102,25 @@ public class MainView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(
+            java.util.logging.Logger.getLogger(NewMainView.class.getName()).log(
                     java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(
+            java.util.logging.Logger.getLogger(NewMainView.class.getName()).log(
                     java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(
+            java.util.logging.Logger.getLogger(NewMainView.class.getName()).log(
                     java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(
+            java.util.logging.Logger.getLogger(NewMainView.class.getName()).log(
                     java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new MainView().setVisible(true);
+                new NewMainView().setVisible(true);
             }
         });
     }

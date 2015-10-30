@@ -33,7 +33,6 @@ import javax.sound.sampled.AudioInputStream;
  * @author lffct001
  */
 public class Waveforms extends WAVAudioFile {
-    
 
     public Waveforms() throws IOException {
 
@@ -65,7 +64,6 @@ public class Waveforms extends WAVAudioFile {
 //        }
 //        return output;
 //    }
-
     /**
      * Asks the user for the duration of the waveform to be generated
      *
