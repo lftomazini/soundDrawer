@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hw03;
+package hw03_practice;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -92,9 +92,8 @@ public class WAVClient extends Waveforms {
                 System.out.println("(4) Adjust volume of the .wav file");
                 System.out.println("(5) Add delay to .wav file");
                 System.out.println("(6) Perform FFT to .wav file");
-                System.out.println("(7) Display waveform");
-                System.out.println("(8) Save changes .wav file");
-                System.out.println("(9) Back to previous menu");
+                System.out.println("(7) Save changes .wav file");
+                System.out.println("(8) Back to previous menu");
 
                 option = scanner.nextInt();
                 switch (option) {
@@ -135,20 +134,14 @@ public class WAVClient extends Waveforms {
                         Complex[] b = this.FFT(c);
                         this.askPeakAmplitude(b);
                         break;
-
                     case 7:
                         System.out.println(
-                                "You chose (7) Display waveform");
-                        this.displaySound();
+                                "You chose (7) Save changes .wav file");
+                        this.save();
                         break;
                     case 8:
                         System.out.println(
-                                "You chose (8) Save changes .wav file");
-                        this.save();
-                        break;
-                    case 9:
-                        System.out.println(
-                                "You chose (9) Back to previous menu");
+                                "You chose (8) Back to previous menu");
                         this.menu();
                         break;
                     default:

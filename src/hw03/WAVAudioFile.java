@@ -14,10 +14,9 @@
  *
  * ****************************************
  */
-package hw03;
+package hw03_practice;
 
-import java.awt.EventQueue;
-import java.awt.HeadlessException;
+import java.awt.Component;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,6 +36,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JFileChooser;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
@@ -74,11 +74,6 @@ public class WAVAudioFile {
     /**
      *
      */
-    public static byte[] PLOT_BYTES;
-
-    /**
-     *
-     */
     public static final String HOME = System.getProperty("user.home");
 
     private Complex[] complexNums;
@@ -98,44 +93,30 @@ public class WAVAudioFile {
     public WAVAudioFile() throws IOException {
     }
 
-    public void byteToTxt() {
-        try {
-            PrintWriter pr = new PrintWriter("bytes");
-
-            for (int i = 0; i < this.getBytes().length; i++) {
-                pr.println(this.getBytes()[i]);
-            }
-            pr.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("No such file exists.");
-        }
-    }
-
     /**
      * Chooses a file from the computer chosen by the user
      */
     public void chooseFile() {
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Type the file location");
-            this.s_path = scanner.next();
-            this.path = Paths.get(s_path);
-            this.bytes = this.WAVtoByte();
-        } catch (HeadlessException e) {
-            System.out.println("Headless exception occurred here");
-        }
-
 //        try {
-//            JFileChooser chooser = new JFileChooser();
-//            Component j = null;
-//            chooser.showOpenDialog(j);
-//            File file = chooser.getSelectedFile();
-//            this.s_path = file.getAbsolutePath();
+//            Scanner scanner = new Scanner(System.in);
+//            System.out.println("Type the file location");
+//            this.s_path = scanner.next();
 //            this.path = Paths.get(s_path);
 //            this.bytes = this.WAVtoByte();
-//        } catch (Exception e) {
+//        } catch (HeadlessException e) {
+//            System.out.println("Headless exception occurred here");
 //        }
+
+        try {
+            JFileChooser chooser = new JFileChooser();
+            Component j = null;
+            chooser.showOpenDialog(j);
+            File file = chooser.getSelectedFile();
+            this.s_path = file.getAbsolutePath();
+            this.path = Paths.get(s_path);
+            this.bytes = this.WAVtoByte();
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -148,7 +129,6 @@ public class WAVAudioFile {
             this.s_path = s_path;
             this.path = Paths.get(s_path);
             this.bytes = this.WAVtoByte();
-            PLOT_BYTES = this.bytes;
         } catch (Exception e) {
             System.out.println("Exception occurred here");
         }
@@ -232,17 +212,6 @@ public class WAVAudioFile {
         }
     }
 
-    public void displaySound() {
-        EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                AudioViewer frame = new AudioViewer();
-                frame.setVisible(true);
-            }
-        });
-    }
-
     /**
      * Converts an array of bytes to a .WAV file
      *
@@ -318,7 +287,6 @@ public class WAVAudioFile {
                 buffer[i + sampleDelay] += (short) ((float) buffer[i] * decay);
             }
             this.bytes = buffer;
-            PLOT_BYTES = this.bytes;
 
             boolean bigEndian = false;
             boolean sign = true;
@@ -546,7 +514,7 @@ public class WAVAudioFile {
             this.bytes[i] = (byte) rep;
             this.bytes[i + 1] = (byte) (rep >> 8);
         }
-        PLOT_BYTES = this.bytes;
+
         try {
             File out = new File(this.getS_path());
             AudioInputStream audio = AudioSystem.getAudioInputStream(out);
@@ -570,34 +538,30 @@ public class WAVAudioFile {
             System.out.println("IO Exception occurred");
         }
     }
-
+    
     /**
      * Converts an array of bytes to an array of complex numbers
-     *
      * @return - out: an array of complex numbers
      */
     public Complex[] byteToComplex() {
         int x = 1;
-        while (x < this.getBytes().length) {
-            x *= 2;
+        while(x < this.getBytes().length){
+            x*= 2;
         }
-        Complex[] out = new Complex[x];
+        Complex [] out = new Complex[x];
         byte[] byteArray = this.getBytes();
         for (int i = 0; i < byteArray.length; i++) {
-            out[i] = new Complex(byteArray[i] / Byte.MAX_VALUE, 0);
+            out[i] = new Complex(byteArray[i]/Byte.MAX_VALUE, 0);
         }
         return out;
     }
-
-    /**
-     * Performs a DFT to the waveform currently loaded in memory
-     *
-     * @see -
-     * http://www.nayuki.io/page/how-to-implement-the-discrete-fourier-transform
-     *
-     * @return - output: an array of complex numbers
-     *
-     */
+     /**
+      * Performs a DFT to the waveform currently loaded in memory 
+      * @see - http://www.nayuki.io/page/how-to-implement-the-discrete-fourier-transform
+      *
+      * @return - output: an array of complex numbers
+      *
+      */
     public Complex[] DFT() {
         Complex[] input = this.byteToComplex();
         int n = input.length;
@@ -617,10 +581,10 @@ public class WAVAudioFile {
         }
         return output;
     }
-
+    
     /**
      * Runs the FFT algorithm on an array of Complex numbers
-     *
+     * 
      * @param c: array of complex numbers
      * @return output: array of complex numbers
      * @see - http://introcs.cs.princeton.edu/java/97data/FFT.java.html
@@ -630,64 +594,66 @@ public class WAVAudioFile {
 
         // base case
         if (N == 1) {
-            return new Complex[]{c[0]};
+            return new Complex[] {c[0]};
         }
 
         // radix 2 Cooley-Tukey FFT
-        if (N % 2 != 0) {
+        if (N % 2 != 0) { 
             System.out.println(N);
-            throw new RuntimeException("N is not a power of 2");
+            throw new RuntimeException("N is not a power of 2");    
         }
 
         // FFT of even terms
-        Complex[] evenTerms = new Complex[N / 2];
-        for (int k = 0; k < N / 2; k++) {
-            evenTerms[k] = c[2 * k];
+        
+        Complex[] evenTerms = new Complex[N/2];
+        for (int k = 0; k < N/2; k++) {
+            evenTerms[k] = c[2*k];
         }
         Complex[] even = FFT(evenTerms);
 
         // FFT of odd terms
-        Complex[] oddTerms = evenTerms;  // reuse the array
-        for (int k = 0; k < N / 2; k++) {
-            oddTerms[k] = c[2 * k + 1];
+        Complex[] oddTerms  = evenTerms;  // reuse the array
+        for (int k = 0; k < N/2; k++) {
+            oddTerms[k] = c[2*k + 1];
         }
         Complex[] odd = FFT(oddTerms);
-
+        
         // combine
         Complex[] output = new Complex[N];
-        for (int k = 0; k < N / 2; k++) {
+        for (int k = 0; k < N/2; k++) {
             System.out.println(k);
             double kth = -2 * k * Math.PI / N;
             Complex wak = new Complex(Math.cos(kth), Math.sin(kth));
-            output[k] = even[k].add(wak.multiply(odd[k]));
-            output[k + N / 2] = even[k].subtract(wak.multiply(odd[k]));
-        }
+            output[k]       = even[k].add(wak.multiply(odd[k]));
+            output[k + N/2] = even[k].subtract(wak.multiply(odd[k]));
+        } 
         return output;
-
+        
     }
-
-    public void askPeakAmplitude(Complex[] c) {
-        double[] amp = new double[c.length / 2];
-        for (int i = 0; i < amp.length; i++) {
+    
+    public void askPeakAmplitude(Complex[] c){
+        double[] amp = new double[c.length/2];
+        for (int i=0; i < amp.length; i++) {
             amp[i] = c[i].absolute();
         }
         Arrays.sort(amp);
         Scanner scanner = new Scanner(System.in);
         System.out.println("How many peak values do you want?");
         int peaks = scanner.nextInt();
-
+        
+        
         try {
             File file = new File(this.getS_path());
             AudioInputStream audio = AudioSystem.getAudioInputStream(file);
             float sample_rate = audio.getFormat().getSampleRate();
             int bytes_per_frame = audio.getFormat().getFrameSize();
             long frame_length = audio.getFrameLength();
-
+            
+            
             double freq;
             for (int j = 0; j < peaks; j++) {
-                freq = amp[amp.length - j] * (sample_rate / (frame_length * bytes_per_frame));
-                System.out.println(
-                        "Amplitude:" + j + 1 + " = " + amp[amp.length - j] + ", " + "Corresponding Frequency: " + freq);
+                freq = amp[amp.length-j]*(sample_rate/(frame_length*bytes_per_frame));
+                System.out.println("Amplitude:" + j+1 + " = " + amp[amp.length-j] + ", " + "Corresponding Frequency: " + freq );
             }
         } catch (UnsupportedAudioFileException e) {
             System.out.println("Invalid audio file path");

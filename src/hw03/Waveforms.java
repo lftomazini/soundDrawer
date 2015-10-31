@@ -14,13 +14,13 @@
  *
  * ****************************************
  */
-package hw03;
+package hw03_practice;
 
-import static hw03.WAVAudioFile.CHANNELS;
-import static hw03.WAVAudioFile.IS_BIG_ENDIAN;
-import static hw03.WAVAudioFile.NUMBER_OF_BITS;
-import static hw03.WAVAudioFile.SAMPLE_RATE;
-import static hw03.WAVAudioFile.SIGNED;
+import static hw03_practice.WAVAudioFile.CHANNELS;
+import static hw03_practice.WAVAudioFile.IS_BIG_ENDIAN;
+import static hw03_practice.WAVAudioFile.NUMBER_OF_BITS;
+import static hw03_practice.WAVAudioFile.SAMPLE_RATE;
+import static hw03_practice.WAVAudioFile.SIGNED;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,6 +33,7 @@ import javax.sound.sampled.AudioInputStream;
  * @author lffct001
  */
 public class Waveforms extends WAVAudioFile {
+    
 
     public Waveforms() throws IOException {
 
@@ -64,6 +65,7 @@ public class Waveforms extends WAVAudioFile {
 //        }
 //        return output;
 //    }
+
     /**
      * Asks the user for the duration of the waveform to be generated
      *

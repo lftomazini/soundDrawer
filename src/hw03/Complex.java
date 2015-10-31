@@ -14,7 +14,7 @@
  *  
  * ****************************************
  */
-package hw03;
+package hw03_practice;
 
 import java.util.Arrays;
 
