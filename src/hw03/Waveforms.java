@@ -14,13 +14,8 @@
  *
  * ****************************************
  */
-package hw03_practice;
+package hw03;
 
-import static hw03_practice.WAVAudioFile.CHANNELS;
-import static hw03_practice.WAVAudioFile.IS_BIG_ENDIAN;
-import static hw03_practice.WAVAudioFile.NUMBER_OF_BITS;
-import static hw03_practice.WAVAudioFile.SAMPLE_RATE;
-import static hw03_practice.WAVAudioFile.SIGNED;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,7 +28,6 @@ import javax.sound.sampled.AudioInputStream;
  * @author lffct001
  */
 public class Waveforms extends WAVAudioFile {
-    
 
     public Waveforms() throws IOException {
 
@@ -65,7 +59,6 @@ public class Waveforms extends WAVAudioFile {
 //        }
 //        return output;
 //    }
-
     /**
      * Asks the user for the duration of the waveform to be generated
      *
@@ -125,22 +118,22 @@ public class Waveforms extends WAVAudioFile {
      *
      */
     public void generateSine(double duration, float frequency,
-                             float amplitude) {
+                             double sampleRate) {
         try {
             double twoPiF = 2
                             * Math.PI
                             * frequency;
             byte[] bytes
                    = new byte[(int) (duration
-                                     * 2 * SAMPLE_RATE)];
+                                     * 2 * sampleRate)];
             for (int i = 0; i < bytes.length; i++) {
-                double time = i / SAMPLE_RATE;
-                bytes[i] = (byte) (amplitude
+                double time = i / sampleRate;
+                bytes[i] = (byte) (AMPLITUDE
                                    * Math.sin(twoPiF
                                               * time));
 
                 InputStream buffer = new ByteArrayInputStream(bytes);
-                this.aFormat = new AudioFormat((float) SAMPLE_RATE,
+                this.aFormat = new AudioFormat((float) sampleRate,
                                                NUMBER_OF_BITS,
                                                CHANNELS,
                                                SIGNED, IS_BIG_ENDIAN);

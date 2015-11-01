@@ -14,7 +14,7 @@
  *
  * ****************************************
  */
-package hw03_practice;
+package hw03;
 
 import java.awt.Component;
 import java.io.ByteArrayInputStream;
@@ -23,7 +23,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -54,6 +53,11 @@ public class WAVAudioFile {
     /**
      *
      */
+    public static final float AMPLITUDE = 0.5f;
+
+    /**
+     *
+     */
     public static final int CHANNELS = 1;
 
     /**
@@ -77,9 +81,9 @@ public class WAVAudioFile {
     public static final String HOME = System.getProperty("user.home");
 
     private Complex[] complexNums;
-    private String s_path;
-    private Path path;
-    private byte[] bytes;
+    String s_path;
+    Path path;
+    byte[] bytes;
     private AudioFileFormat aFFormat;
     AudioFormat aFormat;
     private double duration;
@@ -538,30 +542,34 @@ public class WAVAudioFile {
             System.out.println("IO Exception occurred");
         }
     }
-    
+
     /**
      * Converts an array of bytes to an array of complex numbers
+     *
      * @return - out: an array of complex numbers
      */
     public Complex[] byteToComplex() {
         int x = 1;
-        while(x < this.getBytes().length){
-            x*= 2;
+        while (x < this.getBytes().length) {
+            x *= 2;
         }
-        Complex [] out = new Complex[x];
+        Complex[] out = new Complex[x];
         byte[] byteArray = this.getBytes();
         for (int i = 0; i < byteArray.length; i++) {
-            out[i] = new Complex(byteArray[i]/Byte.MAX_VALUE, 0);
+            out[i] = new Complex(byteArray[i] / Byte.MAX_VALUE, 0);
         }
         return out;
     }
-     /**
-      * Performs a DFT to the waveform currently loaded in memory 
-      * @see - http://www.nayuki.io/page/how-to-implement-the-discrete-fourier-transform
-      *
-      * @return - output: an array of complex numbers
-      *
-      */
+
+    /**
+     * Performs a DFT to the waveform currently loaded in memory
+     *
+     * @see -
+     * http://www.nayuki.io/page/how-to-implement-the-discrete-fourier-transform
+     *
+     * @return - output: an array of complex numbers
+     *
+     */
     public Complex[] DFT() {
         Complex[] input = this.byteToComplex();
         int n = input.length;
@@ -581,10 +589,10 @@ public class WAVAudioFile {
         }
         return output;
     }
-    
+
     /**
      * Runs the FFT algorithm on an array of Complex numbers
-     * 
+     *
      * @param c: array of complex numbers
      * @return output: array of complex numbers
      * @see - http://introcs.cs.princeton.edu/java/97data/FFT.java.html
@@ -594,66 +602,64 @@ public class WAVAudioFile {
 
         // base case
         if (N == 1) {
-            return new Complex[] {c[0]};
+            return new Complex[]{c[0]};
         }
 
         // radix 2 Cooley-Tukey FFT
-        if (N % 2 != 0) { 
+        if (N % 2 != 0) {
             System.out.println(N);
-            throw new RuntimeException("N is not a power of 2");    
+            throw new RuntimeException("N is not a power of 2");
         }
 
         // FFT of even terms
-        
-        Complex[] evenTerms = new Complex[N/2];
-        for (int k = 0; k < N/2; k++) {
-            evenTerms[k] = c[2*k];
+        Complex[] evenTerms = new Complex[N / 2];
+        for (int k = 0; k < N / 2; k++) {
+            evenTerms[k] = c[2 * k];
         }
         Complex[] even = FFT(evenTerms);
 
         // FFT of odd terms
-        Complex[] oddTerms  = evenTerms;  // reuse the array
-        for (int k = 0; k < N/2; k++) {
-            oddTerms[k] = c[2*k + 1];
+        Complex[] oddTerms = evenTerms;  // reuse the array
+        for (int k = 0; k < N / 2; k++) {
+            oddTerms[k] = c[2 * k + 1];
         }
         Complex[] odd = FFT(oddTerms);
-        
+
         // combine
         Complex[] output = new Complex[N];
-        for (int k = 0; k < N/2; k++) {
+        for (int k = 0; k < N / 2; k++) {
             System.out.println(k);
             double kth = -2 * k * Math.PI / N;
             Complex wak = new Complex(Math.cos(kth), Math.sin(kth));
-            output[k]       = even[k].add(wak.multiply(odd[k]));
-            output[k + N/2] = even[k].subtract(wak.multiply(odd[k]));
-        } 
+            output[k] = even[k].add(wak.multiply(odd[k]));
+            output[k + N / 2] = even[k].subtract(wak.multiply(odd[k]));
+        }
         return output;
-        
+
     }
-    
-    public void askPeakAmplitude(Complex[] c){
-        double[] amp = new double[c.length/2];
-        for (int i=0; i < amp.length; i++) {
+
+    public void askPeakAmplitude(Complex[] c) {
+        double[] amp = new double[c.length / 2];
+        for (int i = 0; i < amp.length; i++) {
             amp[i] = c[i].absolute();
         }
         Arrays.sort(amp);
         Scanner scanner = new Scanner(System.in);
         System.out.println("How many peak values do you want?");
         int peaks = scanner.nextInt();
-        
-        
+
         try {
             File file = new File(this.getS_path());
             AudioInputStream audio = AudioSystem.getAudioInputStream(file);
             float sample_rate = audio.getFormat().getSampleRate();
             int bytes_per_frame = audio.getFormat().getFrameSize();
             long frame_length = audio.getFrameLength();
-            
-            
+
             double freq;
             for (int j = 0; j < peaks; j++) {
-                freq = amp[amp.length-j]*(sample_rate/(frame_length*bytes_per_frame));
-                System.out.println("Amplitude:" + j+1 + " = " + amp[amp.length-j] + ", " + "Corresponding Frequency: " + freq );
+                freq = amp[amp.length - j] * (sample_rate / (frame_length * bytes_per_frame));
+                System.out.println(
+                        "Amplitude:" + j + 1 + " = " + amp[amp.length - j] + ", " + "Corresponding Frequency: " + freq);
             }
         } catch (UnsupportedAudioFileException e) {
             System.out.println("Invalid audio file path");

@@ -14,17 +14,17 @@
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="New_Option">
+            <MenuItem class="javax.swing.JMenuItem" name="newOption">
               <Properties>
                 <Property name="text" type="java.lang.String" value="New"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="New_OptionActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newOptionActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="New_Open_Separate">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="Open_Option">
+            <MenuItem class="javax.swing.JMenuItem" name="openOptio">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="96" green="82" red="be" type="rgb"/>
@@ -34,7 +34,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="Open_Exit_Separator">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="Exit_Option">
+            <MenuItem class="javax.swing.JMenuItem" name="exitOption">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
@@ -79,11 +79,11 @@
                                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="Rewind" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnRewind" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace pref="62" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
-                                              <Component id="Play" max="32767" attributes="0"/>
+                                              <Component id="btnPlay" max="32767" attributes="0"/>
                                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                               <Component id="y_Axis_0" min="-2" max="-2" attributes="0"/>
                                           </Group>
@@ -100,7 +100,7 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="Stop" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="btnStop" min="-2" pref="60" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="y_Axis_3" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -113,8 +113,8 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="WavePanel" max="32767" attributes="0"/>
-                          <Component id="Zoom_Scroll" max="32767" attributes="0"/>
+                          <Component id="wavePanel" max="32767" attributes="0"/>
+                          <Component id="sliderZoom" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -133,13 +133,13 @@
                   <Group type="102" attributes="0">
                       <Component id="y_Axis_2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="Rewind" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRewind" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="y_Axis_1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="y_Axis_0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Play" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnPlay" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -149,20 +149,20 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Stop" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnStop" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="y_Axis_4" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="WavePanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="wavePanel" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="Zoom_Scroll" min="-2" max="-2" attributes="0"/>
+                      <Component id="sliderZoom" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -176,7 +176,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="WavePanel">
+    <Container class="javax.swing.JPanel" name="wavePanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -221,7 +221,7 @@
         <Property name="text" type="java.lang.String" value="-1.0    -"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSlider" name="Zoom_Scroll">
+    <Component class="javax.swing.JSlider" name="sliderZoom">
       <Properties>
         <Property name="minimum" type="int" value="-100"/>
         <Property name="value" type="int" value="0"/>
@@ -236,30 +236,27 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JScrollBar" name="jScrollBar1">
+        <Component class="javax.swing.JScrollBar" name="scrollView">
           <Properties>
             <Property name="orientation" type="int" value="0"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="java.awt.Button" name="Play">
+    <Component class="java.awt.Button" name="btnPlay">
       <Properties>
         <Property name="label" type="java.lang.String" value="Play"/>
       </Properties>
     </Component>
-    <Component class="java.awt.Button" name="Stop">
+    <Component class="java.awt.Button" name="btnStop">
       <Properties>
         <Property name="label" type="java.lang.String" value="Stop"/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Stop"/>
-      </AccessibilityProperties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StopActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStopActionPerformed"/>
       </Events>
     </Component>
-    <Component class="java.awt.Button" name="Rewind">
+    <Component class="java.awt.Button" name="btnRewind">
       <Properties>
         <Property name="label" type="java.lang.String" value="Rewind"/>
       </Properties>

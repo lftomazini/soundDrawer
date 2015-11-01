@@ -3,18 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hw03_practice;
+package hw03;
+
+import java.awt.Button;
+import javax.swing.JMenuItem;
+import javax.swing.JScrollBar;
+import javax.swing.JSlider;
 
 /**
  *
  * @author as062
  */
-public class Main extends javax.swing.JFrame {
+public class WaveView extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
      */
-    public Main() {
+    public WaveView() {
         initComponents();
     }
 
@@ -27,40 +32,40 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        WavePanel = new javax.swing.JPanel();
+        wavePanel = new javax.swing.JPanel();
         y_Axis_0 = new javax.swing.JLabel();
         y_Axis_1 = new javax.swing.JLabel();
         y_Axis_2 = new javax.swing.JLabel();
         y_Axis_3 = new javax.swing.JLabel();
         y_Axis_4 = new javax.swing.JLabel();
-        Zoom_Scroll = new javax.swing.JSlider();
+        sliderZoom = new javax.swing.JSlider();
         Zoom = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jScrollBar1 = new javax.swing.JScrollBar();
-        Play = new java.awt.Button();
-        Stop = new java.awt.Button();
-        Rewind = new java.awt.Button();
+        scrollView = new javax.swing.JScrollBar();
+        btnPlay = new java.awt.Button();
+        btnStop = new java.awt.Button();
+        btnRewind = new java.awt.Button();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        New_Option = new javax.swing.JMenuItem();
+        newOption = new javax.swing.JMenuItem();
         New_Open_Separate = new javax.swing.JPopupMenu.Separator();
-        Open_Option = new javax.swing.JMenuItem();
+        openOptio = new javax.swing.JMenuItem();
         Open_Exit_Separator = new javax.swing.JPopupMenu.Separator();
-        Exit_Option = new javax.swing.JMenuItem();
+        exitOption = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Wave");
 
-        WavePanel.setBackground(new java.awt.Color(255, 255, 255));
+        wavePanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout WavePanelLayout = new javax.swing.GroupLayout(WavePanel);
-        WavePanel.setLayout(WavePanelLayout);
-        WavePanelLayout.setHorizontalGroup(
-            WavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout wavePanelLayout = new javax.swing.GroupLayout(wavePanel);
+        wavePanel.setLayout(wavePanelLayout);
+        wavePanelLayout.setHorizontalGroup(
+            wavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 488, Short.MAX_VALUE)
         );
-        WavePanelLayout.setVerticalGroup(
-            WavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        wavePanelLayout.setVerticalGroup(
+            wavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 337, Short.MAX_VALUE)
         );
 
@@ -74,45 +79,45 @@ public class Main extends javax.swing.JFrame {
 
         y_Axis_4.setText("-1.0    -");
 
-        Zoom_Scroll.setMinimum(-100);
-        Zoom_Scroll.setValue(0);
+        sliderZoom.setMinimum(-100);
+        sliderZoom.setValue(0);
 
         Zoom.setText("Zoom");
 
-        jScrollBar1.setOrientation(javax.swing.JScrollBar.HORIZONTAL);
-        jScrollPane1.setViewportView(jScrollBar1);
+        scrollView.setOrientation(javax.swing.JScrollBar.HORIZONTAL);
+        jScrollPane1.setViewportView(scrollView);
 
-        Play.setLabel("Play");
+        btnPlay.setLabel("Play");
 
-        Stop.setLabel("Stop");
-        Stop.addActionListener(new java.awt.event.ActionListener() {
+        btnStop.setLabel("Stop");
+        btnStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StopActionPerformed(evt);
+                btnStopActionPerformed(evt);
             }
         });
 
-        Rewind.setLabel("Rewind");
+        btnRewind.setLabel("Rewind");
 
         jMenuBar1.setBackground(new java.awt.Color(120, 120, 120));
 
         jMenu1.setText("File");
 
-        New_Option.setText("New");
-        New_Option.addActionListener(new java.awt.event.ActionListener() {
+        newOption.setText("New");
+        newOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                New_OptionActionPerformed(evt);
+                newOptionActionPerformed(evt);
             }
         });
-        jMenu1.add(New_Option);
+        jMenu1.add(newOption);
         jMenu1.add(New_Open_Separate);
 
-        Open_Option.setBackground(new java.awt.Color(190, 130, 150));
-        Open_Option.setText("Open");
-        jMenu1.add(Open_Option);
+        openOptio.setBackground(new java.awt.Color(190, 130, 150));
+        openOptio.setText("Open");
+        jMenu1.add(openOptio);
         jMenu1.add(Open_Exit_Separator);
 
-        Exit_Option.setText("Exit");
-        jMenu1.add(Exit_Option);
+        exitOption.setText("Exit");
+        jMenu1.add(exitOption);
 
         jMenuBar1.add(jMenu1);
 
@@ -133,10 +138,10 @@ public class Main extends javax.swing.JFrame {
                                         .addGap(2, 2, 2)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(Rewind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnRewind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(Play, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btnPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGap(15, 15, 15)
                                                 .addComponent(y_Axis_0))))
                                     .addGroup(layout.createSequentialGroup()
@@ -147,7 +152,7 @@ public class Main extends javax.swing.JFrame {
                                                 .addComponent(y_Axis_1)
                                                 .addComponent(y_Axis_2))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Stop, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(y_Axis_3))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -155,8 +160,8 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(Zoom, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(WavePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Zoom_Scroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(wavePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sliderZoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -169,13 +174,13 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(y_Axis_2)
                         .addGap(33, 33, 33)
-                        .addComponent(Rewind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRewind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(y_Axis_1)
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(y_Axis_0)
-                            .addComponent(Play, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(65, 65, 65)
@@ -183,16 +188,16 @@ public class Main extends javax.swing.JFrame {
                                 .addGap(65, 65, 65))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Stop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(44, 44, 44)))
                         .addComponent(y_Axis_4))
-                    .addComponent(WavePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(wavePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(Zoom_Scroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sliderZoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -200,18 +205,16 @@ public class Main extends javax.swing.JFrame {
                         .addGap(29, 29, 29))))
         );
 
-        Stop.getAccessibleContext().setAccessibleName("Stop");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void New_OptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_OptionActionPerformed
+    private void newOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newOptionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_New_OptionActionPerformed
+    }//GEN-LAST:event_newOptionActionPerformed
 
-    private void StopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopActionPerformed
+    private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_StopActionPerformed
+    }//GEN-LAST:event_btnStopActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,7 +223,7 @@ public class Main extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -230,40 +233,77 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WaveView.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WaveView.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WaveView.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WaveView.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new WaveView().setVisible(true);
             }
         });
     }
 
+    public JMenuItem getExitOption() {
+        return exitOption;
+    }
+
+    public JMenuItem getNewOption() {
+        return newOption;
+    }
+
+    public JMenuItem getOpenOption() {
+        return openOptio;
+    }
+
+    public Button getBtnPlay() {
+        return btnPlay;
+    }
+
+    public Button getBtnRewind() {
+        return btnRewind;
+    }
+
+    public Button getBtnStop() {
+        return btnStop;
+    }
+
+    public JScrollBar getScrollView() {
+        return scrollView;
+    }
+
+    public JSlider getSliderZoom() {
+        return sliderZoom;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Exit_Option;
     private javax.swing.JPopupMenu.Separator New_Open_Separate;
-    private javax.swing.JMenuItem New_Option;
     private javax.swing.JPopupMenu.Separator Open_Exit_Separator;
-    private javax.swing.JMenuItem Open_Option;
-    private java.awt.Button Play;
-    private java.awt.Button Rewind;
-    private java.awt.Button Stop;
-    private javax.swing.JPanel WavePanel;
     private javax.swing.JLabel Zoom;
-    private javax.swing.JSlider Zoom_Scroll;
+    private java.awt.Button btnPlay;
+    private java.awt.Button btnRewind;
+    private java.awt.Button btnStop;
+    private javax.swing.JMenuItem exitOption;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem newOption;
+    private javax.swing.JMenuItem openOptio;
+    private javax.swing.JScrollBar scrollView;
+    private javax.swing.JSlider sliderZoom;
+    private javax.swing.JPanel wavePanel;
     private javax.swing.JLabel y_Axis_0;
     private javax.swing.JLabel y_Axis_1;
     private javax.swing.JLabel y_Axis_2;
