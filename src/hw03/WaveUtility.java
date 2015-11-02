@@ -10,6 +10,8 @@ import static hw03.WAVAudioFile.IS_BIG_ENDIAN;
 import static hw03.WAVAudioFile.NUMBER_OF_BITS;
 import static hw03.WAVAudioFile.SAMPLE_RATE;
 import static hw03.WAVAudioFile.SIGNED;
+import java.awt.Component;
+import java.awt.EventQueue;
 import java.awt.HeadlessException;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -21,6 +23,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -29,6 +32,7 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
@@ -39,14 +43,19 @@ import sun.audio.AudioStream;
  */
 public class WaveUtility extends Waveforms {
     public static WAVAudioFile song;
+    
+    public static String thePath;
+    public static byte[] theBytes;
+    public static AudioFormat theAFormat;
+    public static AudioInputStream theAIS;
 
     public WaveUtility() throws IOException {
-        super();
-        try {
-            song = new WAVAudioFile();
-        } catch (IOException e) {
-            System.out.println("error");
-        }
+//        super();
+//        try {
+//            song = new WAVAudioFile();
+//        } catch (IOException e) {
+//            System.out.println("error");
+//        }
     }
 
     /**
@@ -70,10 +79,6 @@ public class WaveUtility extends Waveforms {
      */
     public static void play(String path) {
         try {
-//            InputStream in = new FileInputStream(path);
-//            AudioStream sample = new AudioStream(in);
-//            AudioPlayer.player.start(sample);
-//            Scanner scanner = new Scanner(System.in);
 
             File file = new File(path);
             AudioInputStream ais;
@@ -133,43 +138,80 @@ public class WaveUtility extends Waveforms {
     }
 
     public void generateWave(double duration, float frequency,
-                             float amplitude) {
+                             double sampleRate) {
         try {
             double twoPiF = 2
                             * Math.PI
                             * frequency;
             byte[] bytes
                    = new byte[(int) (duration
-                                     * 2 * SAMPLE_RATE)];
+                                     * 2 * sampleRate)];
             for (int i = 0; i < bytes.length; i++) {
-                double time = i / SAMPLE_RATE;
-                bytes[i] = (byte) (amplitude
+                double time = i / sampleRate;
+                bytes[i] = (byte) (AMPLITUDE
                                    * Math.sin(twoPiF
                                               * time));
 
                 InputStream buffer = new ByteArrayInputStream(bytes);
-                this.aFormat = new AudioFormat((float) SAMPLE_RATE,
-                                               NUMBER_OF_BITS,
-                                               CHANNELS,
-                                               SIGNED, IS_BIG_ENDIAN);
-                this.aIS = new AudioInputStream(buffer, this.getAFormat(),
-                                                bytes.length);
+                theAFormat = new AudioFormat((float) sampleRate,
+                                             NUMBER_OF_BITS,
+                                             CHANNELS,
+                                             SIGNED, IS_BIG_ENDIAN);
+                theAIS = new AudioInputStream(buffer, theAFormat,
+                                              bytes.length);
                 buffer.close();
             }
         } catch (IOException e) {
             System.out.println("IOException occurred");
         }
     }
-
-    public void chooseFile() {
+    public static void convertToWAV(String output) {
         try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Type the file location");
-            song.s_path = scanner.next();
-            song.path = Paths.get(s_path);
-            song.bytes = this.WAVtoByte();
-        } catch (HeadlessException e) {
-            System.out.println("Headless exception occurred here");
+            AudioSystem.write(theAIS,
+                              AudioFileFormat.Type.WAVE,
+                              new File(HOME, output));
+        } catch (IOException e) {
+            System.out.println("IOException occurred");
         }
+    }
+
+    public static void getFile() {
+        try {
+            JFileChooser chooser = new JFileChooser();
+            Component j = null;
+            chooser.showOpenDialog(j);
+            File file = chooser.getSelectedFile();
+            thePath = file.getAbsolutePath();
+            theBytes = convertWAVtoByte();
+        } catch (Exception e) {
+        }
+    }
+
+    public static byte[] convertWAVtoByte() {
+        byte[] num = new byte[0];
+        try {
+            File file = new File(thePath);
+            InputStream inp_str = new FileInputStream(file);
+            byte[] buffer = new byte[(int) file.length()];
+            inp_str.read(buffer, 0, buffer.length);
+            inp_str.close();
+            return buffer;
+        } catch (FileNotFoundException f) {
+            System.out.println("Invalid path to the file");
+        } catch (IOException e) {
+            System.out.println("IO Exception occurred");
+        }
+        return num;
+    }
+
+    public static void callNew() {
+        EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                NewFileGUI frame = new NewFileGUI();
+                frame.setVisible(true);
+            }
+        });
     }
 }

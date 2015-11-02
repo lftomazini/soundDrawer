@@ -71,55 +71,54 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="btnRewind" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace pref="62" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="btnPlay" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                              <Component id="y_Axis_0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="y_Axis_4" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                              <Component id="y_Axis_1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="y_Axis_2" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="btnPlay" min="-2" pref="58" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="btnStop" min="-2" pref="60" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="y_Axis_3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Component id="buttonPlus" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="buttonMinus" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Component id="Zoom" min="-2" pref="69" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="sliderZoom" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="wavePanel" max="32767" attributes="0"/>
-                          <Component id="sliderZoom" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="482" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="y_Axis_3" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="y_Axis_1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="y_Axis_2" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="y_Axis_4" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="y_Axis_0" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnRewind" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="70" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="drawArea" min="-2" pref="482" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -129,73 +128,48 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="y_Axis_2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Component id="btnRewind" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="y_Axis_1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="y_Axis_0" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnPlay" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="y_Axis_3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnStop" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Component id="btnPlay" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="y_Axis_0" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Component id="btnStop" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="y_Axis_3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       <Component id="y_Axis_4" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="wavePanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="drawArea" min="-2" pref="341" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="buttonPlus" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonMinus" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="15" max="32767" attributes="0"/>
                       <Component id="sliderZoom" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="Zoom" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="wavePanel">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="488" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="337" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
     <Component class="javax.swing.JLabel" name="y_Axis_0">
       <Properties>
         <Property name="text" type="java.lang.String" value="0.0     -"/>
@@ -232,17 +206,6 @@
         <Property name="text" type="java.lang.String" value="Zoom"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JScrollBar" name="scrollView">
-          <Properties>
-            <Property name="orientation" type="int" value="0"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="java.awt.Button" name="btnPlay">
       <Properties>
         <Property name="label" type="java.lang.String" value="Play"/>
@@ -261,5 +224,19 @@
         <Property name="label" type="java.lang.String" value="Rewind"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JButton" name="buttonPlus">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Zoom-in"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonMinus">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Zoom-out"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="drawArea">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+    </Container>
   </SubComponents>
 </Form>

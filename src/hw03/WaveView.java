@@ -6,9 +6,12 @@
 package hw03;
 
 import java.awt.Button;
+import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
+import javax.swing.SwingWorker;
 
 /**
  *
@@ -16,6 +19,7 @@ import javax.swing.JSlider;
  */
 public class WaveView extends javax.swing.JFrame {
 
+    private static SwingWorker<Void, String> worker; 
     /**
      * Creates new form Main
      */
@@ -32,7 +36,6 @@ public class WaveView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        wavePanel = new javax.swing.JPanel();
         y_Axis_0 = new javax.swing.JLabel();
         y_Axis_1 = new javax.swing.JLabel();
         y_Axis_2 = new javax.swing.JLabel();
@@ -40,11 +43,12 @@ public class WaveView extends javax.swing.JFrame {
         y_Axis_4 = new javax.swing.JLabel();
         sliderZoom = new javax.swing.JSlider();
         Zoom = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        scrollView = new javax.swing.JScrollBar();
         btnPlay = new java.awt.Button();
         btnStop = new java.awt.Button();
         btnRewind = new java.awt.Button();
+        buttonPlus = new javax.swing.JButton();
+        buttonMinus = new javax.swing.JButton();
+        drawArea = new javax.swing.JScrollPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         newOption = new javax.swing.JMenuItem();
@@ -55,19 +59,6 @@ public class WaveView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Wave");
-
-        wavePanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout wavePanelLayout = new javax.swing.GroupLayout(wavePanel);
-        wavePanel.setLayout(wavePanelLayout);
-        wavePanelLayout.setHorizontalGroup(
-            wavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 488, Short.MAX_VALUE)
-        );
-        wavePanelLayout.setVerticalGroup(
-            wavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
-        );
 
         y_Axis_0.setText("0.0     -");
 
@@ -84,9 +75,6 @@ public class WaveView extends javax.swing.JFrame {
 
         Zoom.setText("Zoom");
 
-        scrollView.setOrientation(javax.swing.JScrollBar.HORIZONTAL);
-        jScrollPane1.setViewportView(scrollView);
-
         btnPlay.setLabel("Play");
 
         btnStop.setLabel("Stop");
@@ -97,6 +85,10 @@ public class WaveView extends javax.swing.JFrame {
         });
 
         btnRewind.setLabel("Rewind");
+
+        buttonPlus.setText("Zoom-in");
+
+        buttonMinus.setText("Zoom-out");
 
         jMenuBar1.setBackground(new java.awt.Color(120, 120, 120));
 
@@ -130,79 +122,79 @@ public class WaveView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(buttonPlus)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonMinus)
+                                .addGap(121, 121, 121))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(Zoom, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sliderZoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(17, 17, 17))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(y_Axis_3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(y_Axis_1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(y_Axis_2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(y_Axis_4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(y_Axis_0, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(0, 0, 0))
+                            .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnRewind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(15, 15, 15)
-                                                .addComponent(y_Axis_0))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(y_Axis_4)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(y_Axis_1)
-                                                .addComponent(y_Axis_2))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(y_Axis_3))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Zoom, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(wavePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sliderZoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnRewind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)))
+                        .addComponent(drawArea, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addComponent(y_Axis_2)
-                        .addGap(33, 33, 33)
+                        .addGap(1, 1, 1)
                         .addComponent(btnRewind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(27, 27, 27)
                         .addComponent(y_Axis_1)
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(y_Axis_0)
-                            .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(y_Axis_3)
-                                .addGap(65, 65, 65))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)))
+                        .addGap(13, 13, 13)
+                        .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(y_Axis_0)
+                        .addGap(13, 13, 13)
+                        .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(y_Axis_3)
+                        .addGap(70, 70, 70)
                         .addComponent(y_Axis_4))
-                    .addComponent(wavePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(drawArea, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(sliderZoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 18, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Zoom)
-                        .addGap(29, 29, 29))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonPlus)
+                            .addComponent(buttonMinus))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addComponent(sliderZoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Zoom)))
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -251,6 +243,25 @@ public class WaveView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                worker = new  <Void, String>(){
+
+                    /**
+                     * @see - https://www.youtube.com/watch?v=qbrE6idMsWU
+                     * @return - null
+                     * @throws Exception 
+                     */
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        //Thread.sleep(2000);
+                        return null;
+                    }
+                    
+                    @Override 
+                    protected void done() {
+                    }
+                };
+                worker.execute();
+                
                 new WaveView().setVisible(true);
             }
         });
@@ -268,6 +279,18 @@ public class WaveView extends javax.swing.JFrame {
         return openOptio;
     }
 
+    public JButton getButtonMinus() {
+        return buttonMinus;
+    }
+
+    public JButton getButtonPlus() {
+        return buttonPlus;
+    }
+
+    public JScrollPane getDrawArea() {
+        return drawArea;
+    }
+
     public Button getBtnPlay() {
         return btnPlay;
     }
@@ -280,9 +303,9 @@ public class WaveView extends javax.swing.JFrame {
         return btnStop;
     }
 
-    public JScrollBar getScrollView() {
-        return scrollView;
-    }
+//    public JScrollBar getScrollView() {
+//        return scrollView;
+//    }
 
     public JSlider getSliderZoom() {
         return sliderZoom;
@@ -295,15 +318,15 @@ public class WaveView extends javax.swing.JFrame {
     private java.awt.Button btnPlay;
     private java.awt.Button btnRewind;
     private java.awt.Button btnStop;
+    private javax.swing.JButton buttonMinus;
+    private javax.swing.JButton buttonPlus;
+    private javax.swing.JScrollPane drawArea;
     private javax.swing.JMenuItem exitOption;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem newOption;
     private javax.swing.JMenuItem openOptio;
-    private javax.swing.JScrollBar scrollView;
     private javax.swing.JSlider sliderZoom;
-    private javax.swing.JPanel wavePanel;
     private javax.swing.JLabel y_Axis_0;
     private javax.swing.JLabel y_Axis_1;
     private javax.swing.JLabel y_Axis_2;
