@@ -5,6 +5,9 @@
  */
 package hw03;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 
 /**
@@ -38,13 +41,20 @@ public class WaveMain {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                WaveModel theModel = new WaveModel();
-                WaveView theView = new WaveView();
-                WaveController theController = new WaveController(theModel,
-                                                                  theView);
-
-                theView.setVisible(true);
+                try {
+                    WaveModel theModel = new WaveModel();
+                    WaveView theView = new WaveView();
+                    WaveUtility song = new WaveUtility();
+                    //WaveComponents component = new WaveComponents(song, theView.getDrawArea().getHeight(),theView.getDrawArea().getWidth());
+                    WaveController theController = new WaveController(theModel,
+                            theView, null);
+                    
+                    theView.setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(WaveMain.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

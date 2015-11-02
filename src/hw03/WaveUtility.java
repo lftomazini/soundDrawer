@@ -50,12 +50,6 @@ public class WaveUtility extends Waveforms {
     public static AudioInputStream theAIS;
 
     public WaveUtility() throws IOException {
-//        super();
-//        try {
-//            song = new WAVAudioFile();
-//        } catch (IOException e) {
-//            System.out.println("error");
-//        }
     }
 
     /**
@@ -68,7 +62,7 @@ public class WaveUtility extends Waveforms {
     public static int[] convertToIntArray(byte[] input) {
         int[] result = new int[input.length];
         for (int i = 0; i < input.length; i++) {
-            result[i] = input[i] & 0xff; // Range 0 to 255, not -128 to 127
+            result[i] = input[i]; // Range 0 to 255, not -128 to 127
         }
         return result;
     }
@@ -186,6 +180,16 @@ public class WaveUtility extends Waveforms {
         } catch (Exception e) {
         }
     }
+    
+     public void chooseGenerated(String s_path) {
+        try {
+            thePath = s_path;
+//            this.path = Paths.get(s_path);
+            theBytes = convertWAVtoByte();
+        } catch (Exception e) {
+            System.out.println("Exception occurred here");
+        }
+    }
 
     public static byte[] convertWAVtoByte() {
         byte[] num = new byte[0];
@@ -204,14 +208,5 @@ public class WaveUtility extends Waveforms {
         return num;
     }
 
-    public static void callNew() {
-        EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                NewFileGUI frame = new NewFileGUI();
-                frame.setVisible(true);
-            }
-        });
-    }
+   
 }

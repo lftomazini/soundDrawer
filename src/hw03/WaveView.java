@@ -7,10 +7,12 @@ package hw03;
 
 import java.awt.Button;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
 /**
@@ -36,13 +38,19 @@ public class WaveView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        NewFile = new javax.swing.JFrame();
+        lblFrequency = new javax.swing.JLabel();
+        lblDuration = new javax.swing.JLabel();
+        lblSamplerate = new javax.swing.JLabel();
+        txtFrequency = new javax.swing.JTextField();
+        txtDuration = new javax.swing.JTextField();
+        txtSampleRate = new javax.swing.JTextField();
+        btnOK = new javax.swing.JButton();
         y_Axis_0 = new javax.swing.JLabel();
         y_Axis_1 = new javax.swing.JLabel();
         y_Axis_2 = new javax.swing.JLabel();
         y_Axis_3 = new javax.swing.JLabel();
         y_Axis_4 = new javax.swing.JLabel();
-        sliderZoom = new javax.swing.JSlider();
-        Zoom = new javax.swing.JLabel();
         btnPlay = new java.awt.Button();
         btnStop = new java.awt.Button();
         btnRewind = new java.awt.Button();
@@ -57,6 +65,78 @@ public class WaveView extends javax.swing.JFrame {
         Open_Exit_Separator = new javax.swing.JPopupMenu.Separator();
         exitOption = new javax.swing.JMenuItem();
 
+        NewFile.setMaximumSize(new java.awt.Dimension(300, 300));
+        NewFile.setMinimumSize(new java.awt.Dimension(300, 300));
+
+        lblFrequency.setText("Frequency");
+
+        lblDuration.setText("Duration");
+
+        lblSamplerate.setText("Sample rate");
+
+        txtFrequency.setText("440");
+
+        txtDuration.setText("1");
+        txtDuration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDurationActionPerformed(evt);
+            }
+        });
+
+        txtSampleRate.setText("16000");
+
+        btnOK.setText("OK");
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout NewFileLayout = new javax.swing.GroupLayout(NewFile.getContentPane());
+        NewFile.getContentPane().setLayout(NewFileLayout);
+        NewFileLayout.setHorizontalGroup(
+            NewFileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NewFileLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(NewFileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(NewFileLayout.createSequentialGroup()
+                        .addComponent(lblFrequency)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtFrequency, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(NewFileLayout.createSequentialGroup()
+                        .addComponent(lblSamplerate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                        .addComponent(txtSampleRate, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(NewFileLayout.createSequentialGroup()
+                        .addComponent(lblDuration)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewFileLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnOK)
+                .addGap(133, 133, 133))
+        );
+        NewFileLayout.setVerticalGroup(
+            NewFileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NewFileLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(NewFileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFrequency)
+                    .addComponent(txtFrequency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addGroup(NewFileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDuration)
+                    .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(NewFileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSamplerate)
+                    .addComponent(txtSampleRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(btnOK)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Wave");
 
@@ -69,11 +149,6 @@ public class WaveView extends javax.swing.JFrame {
         y_Axis_3.setText("-0.5    -");
 
         y_Axis_4.setText("-1.0    -");
-
-        sliderZoom.setMinimum(-100);
-        sliderZoom.setValue(0);
-
-        Zoom.setText("Zoom");
 
         btnPlay.setLabel("Play");
 
@@ -123,26 +198,16 @@ public class WaveView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addComponent(buttonPlus)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buttonMinus)
-                                .addGap(121, 121, 121))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(Zoom, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sliderZoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(17, 17, 17))))
+                                .addGap(2, 2, 2)
+                                .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonPlus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonMinus)
+                        .addGap(121, 121, 121))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -152,8 +217,7 @@ public class WaveView extends javax.swing.JFrame {
                                     .addComponent(y_Axis_1, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(y_Axis_2, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(y_Axis_4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(y_Axis_0, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(0, 0, 0))
+                                    .addComponent(y_Axis_0, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnRewind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,17 +248,10 @@ public class WaveView extends javax.swing.JFrame {
                         .addComponent(y_Axis_4))
                     .addComponent(drawArea, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonPlus)
-                            .addComponent(buttonMinus))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                        .addComponent(sliderZoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Zoom)))
-                .addGap(0, 0, 0))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonPlus)
+                    .addComponent(buttonMinus))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -207,6 +264,14 @@ public class WaveView extends javax.swing.JFrame {
     private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnStopActionPerformed
+
+    private void txtDurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDurationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDurationActionPerformed
+
+    private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,7 +308,7 @@ public class WaveView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                worker = new  <Void, String>(){
+                worker = new SwingWorker <Void, String>(){
 
                     /**
                      * @see - https://www.youtube.com/watch?v=qbrE6idMsWU
@@ -302,19 +367,34 @@ public class WaveView extends javax.swing.JFrame {
     public Button getBtnStop() {
         return btnStop;
     }
-
-//    public JScrollBar getScrollView() {
-//        return scrollView;
-//    }
-
-    public JSlider getSliderZoom() {
-        return sliderZoom;
+    
+    
+    public JTextField getTxtDuration() {
+        return txtDuration;
     }
 
+    public JTextField getTxtFrequency() {
+        return txtFrequency;
+    }
+
+    public JFrame getNewFile() {
+        return NewFile;
+    }
+
+    public JTextField getTxtSampleRate() {
+        return txtSampleRate;
+    }
+
+    public JButton getBtnOK() {
+        return btnOK;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame NewFile;
     private javax.swing.JPopupMenu.Separator New_Open_Separate;
     private javax.swing.JPopupMenu.Separator Open_Exit_Separator;
-    private javax.swing.JLabel Zoom;
+    private javax.swing.JButton btnOK;
     private java.awt.Button btnPlay;
     private java.awt.Button btnRewind;
     private java.awt.Button btnStop;
@@ -324,13 +404,19 @@ public class WaveView extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitOption;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblDuration;
+    private javax.swing.JLabel lblFrequency;
+    private javax.swing.JLabel lblSamplerate;
     private javax.swing.JMenuItem newOption;
     private javax.swing.JMenuItem openOptio;
-    private javax.swing.JSlider sliderZoom;
+    private javax.swing.JTextField txtDuration;
+    private javax.swing.JTextField txtFrequency;
+    private javax.swing.JTextField txtSampleRate;
     private javax.swing.JLabel y_Axis_0;
     private javax.swing.JLabel y_Axis_1;
     private javax.swing.JLabel y_Axis_2;
     private javax.swing.JLabel y_Axis_3;
     private javax.swing.JLabel y_Axis_4;
     // End of variables declaration//GEN-END:variables
+
 }
