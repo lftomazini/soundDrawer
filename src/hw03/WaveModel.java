@@ -12,26 +12,45 @@ import javax.swing.DefaultBoundedRangeModel;
  * @author as062
  */
 public class WaveModel {
-    private BoundedRangeModel zoomRange;
+    private byte[] array;
     private boolean Play_Button;
     
+    /**
+     *
+     */
     public WaveModel() {
+        this.array = null;
         this.Play_Button = true;
-        this.zoomRange = new DefaultBoundedRangeModel(0, 100, -100, 100);
     }
 
-    public BoundedRangeModel getTempRange() {
-        return zoomRange;
+    /**
+     *
+     * @param array: array of sound bytes
+     */
+    public void setBytes(byte[] array) {
+        this.array = array;
     }
 
-    public void setTempRange(BoundedRangeModel tempRange) {
-        this.zoomRange = tempRange;
+    /**
+     *
+     * @return byteArray: array of sound bytes
+     */
+    public byte[] getBytes() {
+        return this.array;
     }
 
+    /**
+     *
+     * @return Play_Button : boolean value
+     */
     public boolean isPlay_Button() {
         return Play_Button;
     }
 
+    /**
+     *
+     * @param Play_Button : a boolean value
+     */
     public void setPlay_Button(boolean Play_Button) {
         this.Play_Button = Play_Button;
     }

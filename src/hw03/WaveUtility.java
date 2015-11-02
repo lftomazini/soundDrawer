@@ -8,19 +8,14 @@ package hw03;
 import static hw03.WAVAudioFile.CHANNELS;
 import static hw03.WAVAudioFile.IS_BIG_ENDIAN;
 import static hw03.WAVAudioFile.NUMBER_OF_BITS;
-import static hw03.WAVAudioFile.SAMPLE_RATE;
 import static hw03.WAVAudioFile.SIGNED;
 import java.awt.Component;
-import java.awt.EventQueue;
-import java.awt.HeadlessException;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Paths;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFileFormat;
@@ -108,7 +103,11 @@ public class WaveUtility extends Waveforms {
                                                               ex);
         }
     }
-
+    
+    /**
+     * Stop the audio file from playing
+     * @param path: Path to the Wave Audio File 
+     */
     public static void stop(String path) {
         try {
             InputStream in = new FileInputStream(path);
@@ -123,6 +122,9 @@ public class WaveUtility extends Waveforms {
 
     }
 
+    /**
+     * Displays the exit message using JOptionPane
+     */
     public static void displayExitMessage() {
         int sFinal = JOptionPane.showConfirmDialog(null,
                                                    "Exiting the program",
@@ -131,6 +133,12 @@ public class WaveUtility extends Waveforms {
                                                    0, null);
     }
 
+    /**
+     * Generates a sin wave
+     * @param duration - double
+     * @param frequency - float
+     * @param sampleRate - double
+     */
     public void generateWave(double duration, float frequency,
                              double sampleRate) {
         try {
@@ -159,6 +167,11 @@ public class WaveUtility extends Waveforms {
             System.out.println("IOException occurred");
         }
     }
+    
+    /**
+     * Converts a string path to Wav audio file
+     * @param output 
+     */
     public static void convertToWAV(String output) {
         try {
             AudioSystem.write(theAIS,
@@ -169,16 +182,21 @@ public class WaveUtility extends Waveforms {
         }
     }
 
-    public static void getFile() {
+    /**
+     * Returns the bytes of the file chosen by the JFileChooser 
+     * @return byteArray
+     */
+    public static byte[] getFile() {
         try {
             JFileChooser chooser = new JFileChooser();
             Component j = null;
             chooser.showOpenDialog(j);
             File file = chooser.getSelectedFile();
             thePath = file.getAbsolutePath();
-            theBytes = convertWAVtoByte();
-        } catch (Exception e) {
+            return convertWAVtoByte();
+            } catch (Exception e) {
         }
+        return null;
     }
     
      public void chooseGenerated(String s_path) {
@@ -191,6 +209,10 @@ public class WaveUtility extends Waveforms {
         }
     }
 
+    /**
+     * Convert Wav file to bytes
+     * @return array of bytes
+     */
     public static byte[] convertWAVtoByte() {
         byte[] num = new byte[0];
         try {

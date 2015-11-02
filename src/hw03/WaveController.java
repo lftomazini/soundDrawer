@@ -32,11 +32,11 @@ public class WaveController extends JPanel implements ActionListener {
     private WaveUtility song;
     private WaveComponents scrollPanel; 
 
-    public WaveController(WaveModel theModel, WaveView theView, WaveComponents scrollPanel) {
+    public WaveController(WaveModel theModel, WaveView theView, WaveComponents scrollPanel) throws IOException {
         this.theModel = theModel;
         this.theView = theView;
         this.scrollPanel = scrollPanel;
-        
+        this.song = new WaveUtility();
         theView.getBtnPlay().addActionListener(this);
         theView.getBtnRewind().addActionListener(this);
         theView.getBtnStop().addActionListener(this);
@@ -45,7 +45,6 @@ public class WaveController extends JPanel implements ActionListener {
         theView.getExitOption().addActionListener(this);
         theView.getButtonMinus().addActionListener(this);
         theView.getButtonPlus().addActionListener(this);
-        theView.getDrawArea().setViewportView(this.scrollPanel);
         
         this.setSize(WIDTH, HEIGHT);
 
@@ -53,6 +52,13 @@ public class WaveController extends JPanel implements ActionListener {
         this.add(panel);
         this.validate();
         this.repaint();
+    }
+    
+    public void draw() throws IOException{
+        if (theModel.getBytes() != null) {
+            this.scrollPanel = new WaveComponents(theModel.getBytes(), getWidth(), getHeight());
+            theView.getDrawArea().setViewportView(this.scrollPanel);
+        }
     }
     
     @Override
@@ -78,7 +84,16 @@ public class WaveController extends JPanel implements ActionListener {
         }
 
         if (e.getSource() == theView.getOpenOption()) {
-            song.getFile();
+            try {
+                song.chooseFile();
+                byte[] array = song.WAVtoByte();
+                theModel.setBytes(array);
+                System.out.println(theModel.getBytes()[0]);
+                draw();
+                //theModel.setSong(song.getFile());
+            } catch (IOException ex) {
+                Logger.getLogger(WaveController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         if (e.getSource() == theView.getExitOption()) {
@@ -87,33 +102,38 @@ public class WaveController extends JPanel implements ActionListener {
         }
         if (e.getSource() == theView.getNewOption()) {
             theView.getNewFile().setVisible(true);
-            try {
-                WaveUtility waveSong = new WaveUtility();
+//            try {
+                //WaveUtility waveSong = new WaveUtility();
                 if (e.getSource() == theView.getBtnOK()) {
+                try {
                     System.out.println("here");
-                    waveSong.generateWave(Double.parseDouble(theView.getTxtDuration().getText()), Float.parseFloat(theView.getTxtSampleRate().getText()), Double.parseDouble(theView.getTxtFrequency().getText()));
+                    song.generateWave(Double.parseDouble(theView.getTxtDuration().getText()), Float.parseFloat(theView.getTxtSampleRate().getText()), Double.parseDouble(theView.getTxtFrequency().getText()));
                     WaveUtility.convertToWAV("wave.wav");
-                    waveSong.chooseGenerated(HOME + "/wave.wav");
+                    song.chooseGenerated(HOME + "/wave.wav");
                     System.out.println("hey");
+                    draw();
                     theView.getNewFile().setVisible(false);
+                } catch (IOException ex) {
+                    Logger.getLogger(WaveController.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 }
 
-            } catch (IOException ex) {
-                Logger.getLogger(WaveController.class.getName()).log(
-                        Level.SEVERE,
-                        null, ex);
-            }
+//            } catch (IOException ex) {
+//                Logger.getLogger(WaveController.class.getName()).log(
+//                        Level.SEVERE,
+//                        null, ex);
+//            }
         }
         
         if (e.getSource() == theView.getButtonMinus()) {
             System.out.println("Zoom out");
-            scrollPanel.setSamplesPerPixel((int)(0.8*scrollPanel.getSamplePerPixel()));
+            scrollPanel.setSamplesPerPixel((int)(1.2*scrollPanel.getSamplePerPixel()));
             scrollPanel.repaint();
                     }
         if (e.getSource() == theView.getButtonPlus()) {
             System.out.println("Zoom in");
-            scrollPanel.setSamplesPerPixel((int)(1.2*scrollPanel.getSamplePerPixel()));             
+            scrollPanel.setSamplesPerPixel((int)(0.8*scrollPanel.getSamplePerPixel()));             
             scrollPanel.repaint();
         }    
     }
