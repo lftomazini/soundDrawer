@@ -5,6 +5,7 @@
  */
 package hw03;
 
+//
 import javax.swing.BoundedRangeModel;
 import javax.swing.DefaultBoundedRangeModel;
 /**

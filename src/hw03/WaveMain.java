@@ -15,7 +15,7 @@ import javax.swing.UIManager;
  * @author as062
  */
 public class WaveMain {
-    public static void main(String[] args) {
+    public static void main(String[] arg) {
         try {
 //            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 //                if ("Nimbus".equals(info.getName())) {
